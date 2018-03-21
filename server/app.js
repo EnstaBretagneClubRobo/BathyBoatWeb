@@ -4,8 +4,8 @@ var cors = require('cors');
 var yaml = require('js-yaml');
 var fs = require('fs');
 
-var dataClient = require('./tcp/data_client');
-var commandClient = require('./tcp/command_client');
+var dataClient = require('./rosbridge/data_client');
+var commandClient = require('./rosbridge/command_client');
 var mapDownloader = require('./utils/map_downloader');
 var ppmConverter = require('./utils/ppm_converter');
 var wsCamera = require('./ws/ws_camera');
@@ -53,9 +53,9 @@ globalData.state.push({
     content: { state: currentState }
 });
 
-// TCP Clients
-global.commandTCP = undefined;
-global.dataTCP = undefined;
+// ROS Clients
+global.commandROS = undefined;
+global.dataROS = undefined;
 dataClient();
 commandClient();
 
