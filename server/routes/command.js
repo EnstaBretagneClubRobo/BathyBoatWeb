@@ -3,33 +3,37 @@ var fs = require('fs');
 
 var router = express.Router();
 
-
 router.post('/command/rtl', function(req, res) {
-    commandTCP.write('RTL\0');
+    ros_handle.pub_state.publish('RTL');
+    //commandTCP.write('RTL\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/emergency', function(req, res) {
-    commandTCP.write('EMERGENCY\0');
+    ros_handle.pub_state.publish('EMERGENCY\0');
+    //commandTCP.write('EMERGENCY\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/resume', function(req, res) {
-    commandTCP.write('RESUME\0');
+    ros_handle.pub_state.publish('RESUME\0');
+    //commandTCP.write('RESUME\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/pause', function(req, res) {
-    commandTCP.write('PAUSE\0');
+    ros_handle.pub_state.publish('PAUSE\0');
+    //commandTCP.write('PAUSE\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/stop', function(req, res) {
-    commandTCP.write('STOP\0');
+    ros_handle.pub_state.publish('STOP\0');
+    //commandTCP.write('STOP\0');
     res.status(200);
     res.send(true);
 });
@@ -44,7 +48,8 @@ router.post('/command/mission', function(req, res) {
             res.send('Unable to save mission file');
             throw error;
         }
-        commandTCP.write('MISSION|' + missionName + '\0');
+        ros_handle.write('MISSION|' + missionName +'\0');
+        //commandTCP.write('MISSION|' + missionName + '\0');
         res.status(200);
         res.send(true);
     });
@@ -52,7 +57,8 @@ router.post('/command/mission', function(req, res) {
 
 router.post('/command/speed', function(req, res) {
     var speed = parseFloat(req.body.speed);
-    commandTCP.write('SPEED|' + speed + '\0');
+    ros_handle.write('SPEED|' + speed + '\0');
+    //commandTCP.write('SPEED|' + speed + '\0');
     res.status(200);
     res.send(true);
 });
@@ -60,7 +66,8 @@ router.post('/command/speed', function(req, res) {
 router.post('/command/factors', function(req, res) {
     var p = parseFloat(req.body.p);
     var i = parseFloat(req.body.i);
-    commandTCP.write('FACTOR|' + p + '|' + i + '\0');
+    ros_handle.write('FACTOR|' + p + '|' + i + '\0');
+    //commandTCP.write('FACTOR|' + p + '|' + i + '\0');
     res.status(200);
     res.send(true);
 });

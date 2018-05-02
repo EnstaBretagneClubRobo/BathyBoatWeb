@@ -4,11 +4,9 @@ var cors = require('cors');
 var yaml = require('js-yaml');
 var fs = require('fs');
 
-// var dataClient = require('./tcp/data_client');
-// var commandClient = require('./tcp/command_client');
-var rosClient = require('./rosbridge/ros_node.js')
-var mapDownloader = require('./utils/map_downloader');
-var ppmConverter = require('./utils/ppm_converter');
+var rosClient = require('./rosbridge/ros_node.js');
+let mapDownloader = require('./utils/map_downloader');
+let ppmConverter = require('./utils/ppm_converter');
 var wsCamera = require('./ws/ws_camera');
 
 var dataRouter = require('./routes/data');
@@ -54,15 +52,13 @@ globalData.state.push({
     content: { state: currentState }
 });
 
-// ROS Clients
-global.commandROS = undefined;
-global.dataROS = undefined;
-rosClient();
+// ROS Client
+global.ros_handle = new rosClient.Node('web', config.web.webServer.rosIP, config.common.rosbridge.port);
 
 // Express App
 var app = express();
 app.use(mapDownloader);
-app.use(ppmConverter);
+//app.use(ppmConverter);
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
