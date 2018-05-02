@@ -7,16 +7,18 @@
   },
   "dependencies": {
     "body-parser": "~1.18.2",
-    "express": "~4.15.5",
-    "net": "~1.0.2",
     "cors": "~2.8.4",
     "d3": "~4.11.0",
-    "shelljs": "~0.8.1",
+    "express": "~4.15.5",
     "fs": "~0.0.1-security",
-    "request": "~2.83.0",
-    "mkdirp": "~0.5.1",
-    "pngjs": "~3.3.1",
     "js-yaml": "~3.10.0",
+    "json": "^9.0.6",
+    "mkdirp": "~0.5.1",
+    "net": "~1.0.2",
+    "pngjs": "~3.3.1",
+    "request": "~2.83.0",
+    "roslib": "^0.20.0",
+    "shelljs": "~0.8.1",
     "ws": "~4.1.0"
   }
 }

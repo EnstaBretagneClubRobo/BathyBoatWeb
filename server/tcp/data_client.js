@@ -66,7 +66,7 @@ function splitData(raw) {
         msg.content.hydro1 = splitted[2];
         msg.content.hydro2 = splitted[3];
     } else if (msg.type === '$BATT') {
-        msg.content.b1 = splitted[2] * 100;
+        msg.content.b1 = splitted[2 ] * 100;
         msg.content.b2 = splitted[3] * 100;
     } else if (msg.type === '$MOT') {
         msg.content.m1 = (splitted[2] - 4000) / 40;
