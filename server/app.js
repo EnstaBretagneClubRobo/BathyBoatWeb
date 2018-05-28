@@ -35,7 +35,10 @@ if (config.common.map && config.common.map.initialPosition && config.common.map.
     globalData.pos.push({
         type: '$POS',
         date: new Date(),
-        content: {lat: config.common.map.initialPosition.lat, lng: config.common.map.initialPosition.lng, yaw: 0, speed: 0, signal: 0}
+        content: {
+          lat: config.common.map.initialPosition.lat,
+          lng: config.common.map.initialPosition.lng,
+          yaw: 0, speed: 0, signal: 0}
     });
 }
 
