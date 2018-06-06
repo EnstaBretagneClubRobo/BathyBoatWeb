@@ -37,7 +37,7 @@ web:
         streamPort: 8081
         webSocketPort: 8082
         record:
-            enable: true
+            enable: false
             path: /home/helios/Helios/Recordings/
             name: Record_Brest_{DATE}_{TIME}.ts
 
