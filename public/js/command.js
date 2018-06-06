@@ -1,4 +1,4 @@
-var emergencyButton, rtlButton, resumeButton, pauseButton, speedCursor, speedRegulation, stopButton;
+    var emergencyButton, rtlButton, resumeButton, pauseButton, speedCursor, speedRegulation, stopButton;
 
 function sendCommandRequest(request, data) {
     $.ajax({
@@ -46,8 +46,8 @@ function setSpeedFactor(speedFactor) {
 $(document).ready(function() {
     emergencyButton = $('#emergency_button');
     rtlButton = $('#rtl_button');
-    resumeButton = $('#resume_button');
-    pauseButton = $('#pause_button');
+    resumeButton = $('#resume_btn');
+    pauseButton = $('#pause_btn');
     speedCursor = $('#speed_cursor');
     speedRegulation = $('#speed_regulation');
     stopButton = $('#stop_button');

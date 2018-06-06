@@ -4,35 +4,35 @@ var fs = require('fs');
 var router = express.Router();
 
 router.post('/command/rtl', function(req, res) {
-    ros_handle.pub_state.publish('RTL');
+    ros_handle.write_mission_cmd('RTL');
     //commandTCP.write('RTL\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/emergency', function(req, res) {
-    ros_handle.pub_state.publish('EMERGENCY\0');
+    ros_handle.write_mission_cmd('EMERGENCY');
     //commandTCP.write('EMERGENCY\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/resume', function(req, res) {
-    ros_handle.pub_state.publish('RESUME\0');
+    ros_handle.write_mission_cmd('RESUME');
     //commandTCP.write('RESUME\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/pause', function(req, res) {
-    ros_handle.pub_state.publish('PAUSE\0');
+    ros_handle.write_mission_cmd('PAUSE');
     //commandTCP.write('PAUSE\0');
     res.status(200);
     res.send(true);
 });
 
 router.post('/command/stop', function(req, res) {
-    ros_handle.pub_state.publish('STOP\0');
+    ros_handle.write_mission_cmd('STOP');
     //commandTCP.write('STOP\0');
     res.status(200);
     res.send(true);
@@ -48,7 +48,7 @@ router.post('/command/mission', function(req, res) {
             res.send('Unable to save mission file');
             throw error;
         }
-        ros_handle.write('MISSION|' + missionName +'\0');
+        ros_handle.write_mission(currentMission, 'waypoints');
         //commandTCP.write('MISSION|' + missionName + '\0');
         res.status(200);
         res.send(true);
