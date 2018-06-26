@@ -4,10 +4,9 @@ var cors = require('cors');
 var yaml = require('js-yaml');
 var fs = require('fs');
 
-var dataClient = require('./tcp/data_client');
-var commandClient = require('./tcp/command_client');
-var mapDownloader = require('./utils/map_downloader');
-var ppmConverter = require('./utils/ppm_converter');
+var rosClient = require('./rosbridge/ros_node.js');
+let mapDownloader = require('./utils/map_downloader');
+let ppmConverter = require('./utils/ppm_converter');
 var wsCamera = require('./ws/ws_camera');
 
 var dataRouter = require('./routes/data');
@@ -36,7 +35,10 @@ if (config.common.map && config.common.map.initialPosition && config.common.map.
     globalData.pos.push({
         type: '$POS',
         date: new Date(),
-        content: {lat: config.common.map.initialPosition.lat, lng: config.common.map.initialPosition.lng, yaw: 0, speed: 0, signal: 0}
+        content: {
+          lat: config.common.map.initialPosition.lat,
+          lng: config.common.map.initialPosition.lng,
+          yaw: 0, speed: 0, signal: 0}
     });
 }
 
@@ -53,16 +55,13 @@ globalData.state.push({
     content: { state: currentState }
 });
 
-// TCP Clients
-global.commandTCP = undefined;
-global.dataTCP = undefined;
-dataClient();
-commandClient();
+// ROS Client
+global.ros_handle = new rosClient.Node('web', config.web.webServer.rosIP, config.common.rosbridge.port);
 
 // Express App
 var app = express();
 app.use(mapDownloader);
-app.use(ppmConverter);
+//app.use(ppmConverter);
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

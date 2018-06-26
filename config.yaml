@@ -12,8 +12,10 @@
 common:
     # REQUIRED #
     missions:
-        path: /home/helios/Helios/Missions/
-        name: Mission_Brest_{DATE}_{TIME}.json
+        path: /home/simon/Programs/BathyBoatWeb/missions/
+        name: Mission_Brest.json
+    rosbridge:
+        port: 9090
     tcp:
         dataPort: 29200
         commandPort: 22300
@@ -35,7 +37,7 @@ web:
         streamPort: 8081
         webSocketPort: 8082
         record:
-            enable: true
+            enable: false
             path: /home/helios/Helios/Recordings/
             name: Record_Brest_{DATE}_{TIME}.ts
 

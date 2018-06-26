@@ -2,7 +2,6 @@ var express = require('express');
 
 var router = express.Router();
 
-
 router.get('/data', function(req, res) {
     var now = new Date();
     var update = globalData;
